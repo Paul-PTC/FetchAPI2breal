@@ -1,0 +1,30 @@
+https://retoolapi.dev/NPe0qm/expo
+
+See all available endpoints here (generated with json-server).
+Endpoint URL
+
+HTTP method endpoints
+
+GET
+/NPe0qm/expo
+
+GET filter
+/NPe0qm/expo?nombre=value
+
+GET by id
+/NPe0qm/expo/1
+
+GET paginate
+/NPe0qm/expo?_page=2&_limit=10
+
+POST
+/NPe0qm/expo
+
+PUT
+/NPe0qm/expo/1
+
+PATCH
+/NPe0qm/expo/1
+
+DELETE
+/NPe0qm/expo/1
