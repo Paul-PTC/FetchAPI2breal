@@ -1,0 +1,33 @@
+.add-button{
+    position: fixed; /* El botón queda encima del contacto*/
+
+    bottom: 30px; /*Separación del botón con el borde infirior*/
+
+    right: 35px; /*Separación desde la derecha*/
+
+    background-color: rgb(22, 187, 22);
+
+    border: none; /*Para que el botón no tenga bordes*/
+
+    border-radius: 50%; /*Para hacer que el botón quede redondo*/
+
+    width: 70px;
+    height: 70px; /*Para que el botón quede simétrico*/
+
+    display: flex; /*Activamos flexbox para centrar */
+
+    justify-content: center; /*Alineación horizontal*/
+
+    align-items: center; /*Alineación vertical*/
+
+    box-shadow: 0 4px 10px rgb(0, 217, 255); /*Sombra del botón*/
+
+    z-index: 1001; /*Para que el botón siempre quede encima de todo*/
+
+    transition: transform 0.4s; /*Timepo para el efecto */
+    
+}
+
+.add-button:hover{
+    transform: scale(1.1); /*El botón crece 1.1 veces su tamaño */
+}
