@@ -29,7 +29,7 @@ function CrearTabla(datos){//Datos representa al JSON qeu viene  de la api
                 <td>${persona.edad}</td>
                 <td>${persona.correo}</td>
                 <td>
-                    <button>Editar</button>
+                    <button onClick="AbrirModalEditar('${persona.id}', '${persona.nombre}', '${persona.apellido}', '${persona.correo}', ${persona.edad})">Editar</button>
                     <button onClick="EliminarRegistro(${persona.id})">Eliminar</button>
                 </td>
             </tr>
@@ -94,3 +94,52 @@ async function EliminarRegistro(id) { //Se pide ID para borrar
             ObtenerPersonas(); //Para refrescar
         }
 }
+
+//Proceso para editar registros
+const modalEditar = document.getElementById("modalEditar");
+const btnCerrarEditar = document.getElementById("btnCerrarEditar");
+
+//EventListener para cerrar el modal de editar
+btnCerrarEditar.addEventListener("click", ()=>{
+    modal.close(); //Cerrar el form
+});
+function AbrirModalEditar(id, nombre, apellido, correo, edad){
+    document.getElementById("nombreEditar").value = nombre;
+    document.getElementById("apellidoEditar").value = apellido;
+    document.getElementById("emailEditar").value = correo;
+    document.getElementById("edadEditar").value = edad;
+    document.getElementById("idEditar").value = id;
+
+    modalEditar.showModal(); //El modal se abre cuandoya tiene los valores ingresados
+
+}
+
+document.getElementById("frmEditarIntegrante").addEventListener("submit", async e => {
+    e.preventDefault();
+
+    const id = document.getElementById("idEditar").value;
+    const nombre = document.getElementById("nombreEditar").value.trim();
+    const apellido = document.getElementById("apellidoEditar").value.trim();
+    const edad = document.getElementById("edadEditar").value.trim();
+    const correo = document.getElementById("emailEditar").value.trim();
+
+    if(!nombre || !apellido || !edad || !correo){
+        alert("Complete todos los campos");
+        return;
+    }
+
+    const respuesta = await fetch(`${API_URL}/${id}`, {
+        method: "PUT",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({edad, correo, nombre, apellido})
+    });
+
+    if(respuesta.ok){
+        alert("Registro actualizado correctamente ");
+        modalEditar.close();
+        ObtenerPersonas();
+    }
+    else{
+        alert("Error al actualizar");
+    }
+});
